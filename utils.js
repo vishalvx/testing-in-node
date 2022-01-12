@@ -4,6 +4,10 @@ const users = [
   { email: "goku@test.com", id: 1, name: "Goku", verified: false },
 ];
 
+/**
+ * Sometime we need to check/test both outcome like getting use or fail to get user
+ * so we need to test worse case too..
+ */
 const getNewUser = async (id) => {
   await delay(100);
   const user = users.find((u) => u.id === id);
