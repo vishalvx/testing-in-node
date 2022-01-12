@@ -20,3 +20,35 @@ describe('mapObjectArray' , ()=>{
         expect(mockCb.mock.calls.length).toBe(2);
     })
 })
+
+/**
+ * Sometime we need to check/test both outcome like getting use or fail to get user
+ * so we need to test worse case too..
+ */ 
+
+//second tests with async
+describe('getNewUser()',()=>{
+    //first test :- get correct user
+    test("get User Test",async ()=>{
+        const user=await getNewUser(1);
+        //are we getting object of user or not
+        expect(user).toBeTruthy();
+        // are we getting user which i asked for ? ..
+        expect(user.id).toBe(1);
+    })
+    //second test : - if we not getting user are we getting error or not
+    test("Not Found User",async ()=>{
+        //simple term it check catch block should run bcz we test error part  
+        //expect.assertions(1) :- To pass the test we must need to get atleast 1 expect
+
+        expect.assertions(1)
+
+        try{
+            //error making code
+            const user= await getNewUser(10);
+
+        }catch(e){
+            expect(e).toBeTruthy();
+        }
+    })
+})
